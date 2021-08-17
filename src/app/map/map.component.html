@@ -1,0 +1,51 @@
+<div id="wrapper">
+  <div id="side">
+    <div class="company-section">Cindy Little | Apartment Agents</div>
+    <div class="section-filter">
+      <div class="rent-box">
+        <div class="rent">Rent <img _ngcontent-fjf-c13="" class="arrow-down" src="../../assets/arrow-down.svg"
+            (click)="showMat()"></div>
+        <div class="rent-price"> $726 - $1,872 </div>
+      </div>
+      <div class="rooms">
+        <div class="rent-rooms"> Bedrooms <img _ngcontent-fjf-c13="" class="arrow-down"
+            src="../../assets/arrow-down.svg"></div>
+        <div class="rent-nr">1,2,3</div>
+      </div>
+    </div>
+    <div class="show" *ngIf="show">
+      <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" step="1" min="726" max="1872"
+        aria-label="units"></mat-slider>
+      <p>Done</p>
+    </div>
+    <div *ngFor="let list of properties">
+      <mat-card>
+        <div class="row"> 
+        <div class="column1"> 
+        Listing #{{list.propertyID}}
+          <p>{{list.streetAddress}}, {{list.city}} </p>
+           
+          <div>
+            <div style="display: inline-flex;" *ngFor="let item of list.floorplans">
+              <h3 style="padding-right: 15px;" *ngIf="item.bedrooms === 1 ">
+                <img src="../../assets/1-bed.svg" width="16" class="ng-star-inserted">
+                {{item.price}}$</h3>
+              <h3 style="padding-right: 15px;" *ngIf="item.bedrooms === 2 ">
+                  <img  src="../../assets/2-bed.svg" width="16" class="ng-star-inserted">
+                  {{item.price}}$</h3>
+              <h3 *ngIf="item.bedrooms === 3 ">
+                    <img  src="../../assets/3-bed.svg" width="16" class="ng-star-inserted">
+                    {{item.price}}$</h3>
+            </div>
+          </div>
+        </div> 
+        <div class="column2">
+          <img class="img1" src="{{list.photo}}" alt="">
+        </div>
+      </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <div id="map"> </div>
+</div>
